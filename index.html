@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thần số học</title>
+</head>
+<style>
+label{
+    color: blue;
+}
+</style>
+<body>
+
+
+<!--<form id="form">-->
+<!--    <div>-->
+<!--        <ul class="formTen">-->
+<!--            <label>Họ Và Tên</label>-->
+<!--            <input id="name" value="" placeholder="Nhập Họ Tên không dấu">-->
+<!--        </ul>-->
+<!--        <ul class="formNgaySinh" style="margin-top: 20px">-->
+<!--            <label>Ngày Sinh</label>-->
+
+<!--            <input type="text" value="" class="birthday" id="birthday" placeholder="Nhập các số liền nhau"><br><br>-->
+
+<!--            <button type="button" onclick="" id="xem" class="xem">TÍNH TOÁN</button>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</form>-->
+
+
+<script>
+
+    let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let ten = prompt("nhập tên")
+    ten = ten.toUpperCase();
+    let ngaySinh = prompt("nhập ngày sinh")
+    let arr = [];
+    let arr2 = [];
+    document.write(" Xin chào bạn: "+ ten + "<br>" + "Ngày sinh: "+ ngaySinh + "<br>")
+
+
+    function daySoHoVaTen() {
+        for (let i = 0; i < ten.length; i++) {
+            if (ten[i] !== ' ') {
+                arr.push(str.indexOf(ten[i]) % 9 + 1);
+            }
+        }
+    }
+
+    daySoHoVaTen()
+    document.write(" Dãy số Họ và tên của bạn là: " + "<br>" + arr + "<br>");
+
+    let arrTen = [];
+    function daySoTen() {
+        for (let i = ten.length -1; i >0; i--) {
+            arrTen.push(str.indexOf(ten[i]) % 9 + 1);
+            if (ten[i] === ' ') {
+                break
+            }
+        }
+    }daySoTen()
+    document.write("Chữ số trong Tên của bạn là :"+ "<br>"+ arrTen + "<br>")
+
+
+    function daySoNgaySinh() {
+        let bienphu;
+        for (let i = 0; i < ngaySinh.length; i++) {
+            if (ngaySinh[i] !== ' ' || ngaySinh[i] !== "/") {
+                bienphu = Number(ngaySinh[i])
+                arr2.push(bienphu);
+            }
+        }
+    }
+
+    daySoNgaySinh();
+    document.write(" Dãy số ngày sinh của bạn là: " + "<br>" + arr2 + "<br>");
+
+
+    let arrNa = [];
+    let arrPa = [];
+
+    function nguyenPhuAm() {
+        for (let i = 0; i < ten.length; i++) {
+            if (ten[i] === "A" || ten[i] === "E" || ten[i] === "I" || ten[i] === "O" || ten[i] === "U" || ten[i] === "Y") {
+                arrNa.push(str.indexOf(ten[i]) % 9 + 1);
+            } else {
+                arrPa.push(str.indexOf(ten[i]) % 9 + 1);
+            }
+        }
+    }
+
+    nguyenPhuAm()
+    document.write(" Các nguyên âm trong tên của bạn là: " + "<br>" + arrNa + "<br>");
+    document.write(" Các phụ âm trong tên của bạn là: " + "<br>" + arrPa + "<br>");
+
+    function duongDoi() {
+        let tong = arr2[0];
+        for (let i = 1; i < arr2.length; i++) {
+            tong += arr2[i];
+            if (tong > 9) {
+                tong -= 9
+            }
+        }
+        return (tong);
+    }
+
+    document.write("1.Số đường đời của bạn là: " + duongDoi(arr2) + "<br>");
+
+    function soSuMenh() {
+        let tong = arr[0];
+        for (let i = 1; i < arr.length; i++) {
+            tong += arr[i];
+            if (tong > 9) {
+                tong -= 9
+            }
+        }
+        return (tong)
+    }
+
+    document.write("2.Số sứ mệnh của bạn là : " + soSuMenh(ten) + "<br>");
+
+
+    function soLinhHon() {
+
+        let tong = arrNa[0];
+        for (let i = 1; i < arrNa.length; i++) {
+            tong += arrNa[i];
+            if (tong > 9) {
+                tong -= 9
+            }
+        }
+        return (tong)
+    }
+
+    document.write("3.Số linh hồn của bạn là : " + soLinhHon(arrNa) + "<br>");
+
+    function soNhanCach() {
+
+        let tong = arrPa[0];
+        for (let i = 1; i < arrPa.length; i++) {
+            tong += arrPa[i];
+            if (tong > 9) {
+                tong -= 9
+            }
+        }
+        return (tong)
+    }
+
+    document.write("4.Số nhân cách của bạn là : " + soNhanCach(arrPa) + "<br>");
+
+    function soTruongThanh(a, b) {
+        let tong = a + b;
+        if (tong > 9) {
+            tong -= 9;
+        }
+        return (tong)
+    }
+
+    document.write("5.Số Trưởng thành của bạn là : " + soTruongThanh(duongDoi(arr2), soSuMenh(ten)) + "<br>");
+
+    function soNgaySinh() {
+        let tong = arr2[0] + arr2[1];
+        if (tong > 9) {
+            tong -= 9;
+        }
+        return (tong)
+    }
+
+    document.write("6. Số ngày sinh của bạn là: " + soNgaySinh() + "<br>")
+
+    function soThaiDo() {
+        let tong = arr2[0] + arr2[1] + arr2[2] + arr2[3];
+        if(tong > 9 ){
+            tong -= 9;
+        }
+        return (tong)
+    }
+
+    document.write("7. Số Thái độ của bạn là: " + soThaiDo() + "<br>")
+
+    function soTuDuyLyTri(a,b) {
+        let tong =a+b;
+        if(tong>9){
+            tong -=9
+        }
+        return (tong)
+    }
+    document.write("8.Số Tư duy lý trí của bạn là : " + soTuDuyLyTri(soNgaySinh(),soVanMenh() ) + "<br>");
+
+
+    function soVanMenh() {
+        let tong = arrTen[0];
+        for (let i = 1; i < arrTen.length; i++) {
+            tong += arrTen[i];
+            if (tong > 9) {
+                tong -= 9
+            }
+        }
+        return (tong)
+    }
+
+    document.write("9. Số Vận mệnh của bạn là: " + soVanMenh() + "<br>")
+
+</script>
+
+
+</body>
+</html>
